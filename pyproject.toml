@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "clipboard-transfer"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "vidyasagar0405", email = "vidyasagar0405@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/vidyasagar0405/clipboard-transfer#readme"
+Issues = "https://github.com/vidyasagar0405/clipboard-transfer/issues"
+Source = "https://github.com/vidyasagar0405/clipboard-transfer"
+
+[tool.hatch.version]
+path = "src/clipboard_transfer/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/clipboard_transfer tests}"
+
+[tool.coverage.run]
+source_pkgs = ["clipboard_transfer", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/clipboard_transfer/__about__.py",
+]
+
+[tool.coverage.paths]
+clipboard_transfer = ["src/clipboard_transfer", "*/clipboard-transfer/src/clipboard_transfer"]
+tests = ["tests", "*/clipboard-transfer/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
