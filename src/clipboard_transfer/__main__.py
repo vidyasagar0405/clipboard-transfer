@@ -70,8 +70,11 @@ def run_client(host, port, message):
         except Exception as e:
             print(f"Connection failed: {e}")
             sys.exit(1)
-        s.sendall(encrypted_message.encode())
-        print("Encrypted message sent successfully!")
+        try:
+            s.sendall(encrypted_message.encode())
+            print("Encrypted message sent successfully!")
+        except Exception as e:
+            print(f"Unable to send message: {e}")
 
 def main():
     parser = argparse.ArgumentParser(description="Send encrypted text data over TCP.")
